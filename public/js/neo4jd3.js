@@ -386,6 +386,8 @@ function Neo4jD3(_selector, _options) {
         if (typeof options.onNodeDragEnd === 'function') {
             options.onNodeDragEnd(d);
         }
+
+        // d.fx = d.fy = null;
     }
 
     function dragged(d) {
@@ -403,6 +405,12 @@ function Neo4jD3(_selector, _options) {
         if (typeof options.onNodeDragStart === 'function') {
             options.onNodeDragStart(d);
         }
+
+        nodes.forEach(function(node) {
+            if (node.id !== d.id) {
+                node.fx = node.fy = null;
+            }
+        });
     }
 
     function extend(obj1, obj2) {
